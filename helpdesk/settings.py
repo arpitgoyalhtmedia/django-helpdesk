@@ -149,3 +149,10 @@ QUEUE_EMAIL_BOX_UPDATE_ONLY = getattr(settings, 'QUEUE_EMAIL_BOX_UPDATE_ONLY', F
 # only allow users to access queues that they are members of?
 HELPDESK_ENABLE_PER_QUEUE_STAFF_PERMISSION = getattr(
     settings, 'HELPDESK_ENABLE_PER_QUEUE_STAFF_PERMISSION', False)
+
+# User cannot change email in a public ticket if set to true
+# if user is authenticated and email is present then this field
+# becomes readonly.
+HELPDESK_SUBMITTER_EMAIL_READONLY_PUBLIC_TICKET = getattr(
+    settings, 'HELPDESK_SUBMITTER_EMAIL_READONLY_PUBLIC_TICKET', False)
+
