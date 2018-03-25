@@ -87,6 +87,13 @@ def homepage(request):
         form.fields['queue'].choices = [('', '--------')] + [
             (q.id, q.title) for q in Queue.objects.filter(allow_public_submission=True)]
 
+        if request.user.is_authenticated() and request.user.email:
+            if getattr(
+                settings, 'HELPDESK_SUBMITTER_EMAIL_READONLY_PUBLIC_TICKET',
+                False,
+            ):
+                form.fields['submitter_email'].widget.attrs['readonly'] = True
+
     knowledgebase_categories = KBCategory.objects.all()
 
     return render(request, 'helpdesk/public_homepage.html', {
